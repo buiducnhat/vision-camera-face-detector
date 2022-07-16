@@ -47,17 +47,8 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
   private WritableMap processBoundingBox(Rect boundingBox) {
     WritableMap bounds = Arguments.createMap();
 
-    // Calculate offset (we need to center the overlay on the target)
-    Double offsetX =  (boundingBox.exactCenterX() - ceil(boundingBox.width())) / 2.0f;
-    Double offsetY =  (boundingBox.exactCenterY() - ceil(boundingBox.height())) / 2.0f;
-
-    Double x = boundingBox.right + offsetX;
-    Double y = boundingBox.top + offsetY;
-
-
-
-    bounds.putDouble("x", boundingBox.centerX() + (boundingBox.centerX() - x));
-    bounds.putDouble("y", boundingBox.centerY() + (y - boundingBox.centerY()));
+    bounds.putDouble("x", boundingBox.left);
+    bounds.putDouble("y", boundingBox.top);
     bounds.putDouble("width", boundingBox.width());
     bounds.putDouble("height", boundingBox.height());
 
@@ -151,7 +142,7 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
           map.putDouble("leftEyeOpenProbability", face.getLeftEyeOpenProbability());
           map.putDouble("rightEyeOpenProbability", face.getRightEyeOpenProbability());
           map.putDouble("smilingProbability", face.getSmilingProbability());
-          
+
 
           WritableMap contours = processFaceContours(face);
           WritableMap bounds = processBoundingBox(face.getBoundingBox());
