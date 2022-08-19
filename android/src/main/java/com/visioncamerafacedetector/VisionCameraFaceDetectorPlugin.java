@@ -37,8 +37,8 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
   FaceDetectorOptions options =
     new FaceDetectorOptions.Builder()
       .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
-      .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
-      .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
+      .setContourMode(FaceDetectorOptions.CONTOUR_MODE_NONE)
+      .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_NONE)
       .setMinFaceSize(0.15f)
       .build();
 
