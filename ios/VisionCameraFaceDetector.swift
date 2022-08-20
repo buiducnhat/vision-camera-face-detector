@@ -83,15 +83,9 @@ public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
     private static func processBoundingBox(from face: Face) -> [String:Any] {
         let frameRect = face.frame
 
-        let offsetX = (frameRect.midX - ceil(frameRect.width)) / 2.0
-        let offsetY = (frameRect.midY - ceil(frameRect.height)) / 2.0
-
-        let x = frameRect.maxX + offsetX
-        let y = frameRect.minY + offsetY
-
         return [
-          "x": frameRect.midX + (frameRect.midX - x),
-          "y": frameRect.midY + (y - frameRect.midY),
+          "x": frameRect.left,
+          "y": frameRect.top,
           "width": frameRect.width,
           "height": frameRect.height,
           "boundingCenterX": frameRect.midX,
