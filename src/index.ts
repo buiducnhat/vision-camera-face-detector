@@ -13,14 +13,14 @@ export interface Face {
   rightEyeOpenProbability: number;
   smilingProbability: number;
   bounds: {
-    y: number;
-    x: number;
+    top: number;
+    left: number;
     height: number;
     width: number;
-    boundingCenterX: number;
-    boundingCenterY: number;
-    boundingExactCenterX: number;
-    boundingExactCenterY: number;
+    // boundingCenterX: number;
+    // boundingCenterY: number;
+    // boundingExactCenterX: number;
+    // boundingExactCenterY: number;
   };
   contours: {
     FACE: Point[];
