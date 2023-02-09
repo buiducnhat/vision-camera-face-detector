@@ -39,6 +39,7 @@ export interface Face {
     RIGHT_EYE: Point[];
     LEFT_CHEEK: Point[];
   };
+  trackingId?: number;
 }
 
 export function scanFaces(frame: Frame): Face[] {
