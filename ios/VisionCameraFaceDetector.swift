@@ -114,7 +114,7 @@ public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
                     map["rightEyeOpenProbability"] = face.rightEyeOpenProbability
                     map["smilingProbability"] = face.smilingProbability
                     map["bounds"] = processBoundingBox(from: face)
-                    // map["contours"] = processContours(from: face)
+                    map["contours"] = processContours(from: face)
                     if(face.hasTrackingID) {
                         map["trackingId"] = face.trackingID
                     }
