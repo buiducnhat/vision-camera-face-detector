@@ -50,18 +50,8 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
 
     bounds.putDouble("top", boundingBox.top);
     bounds.putDouble("left", boundingBox.left);
-    // bounds.putDouble("right", boundingBox.right);
-    // bounds.putDouble("bottom", boundingBox.bottom);
-    // bounds.putDouble("centerX", boundingBox.centerX());
-    // bounds.putDouble("centerY", boundingBox.centerY());
     bounds.putDouble("width", boundingBox.width());
     bounds.putDouble("height", boundingBox.height());
-
-
-    // bounds.putDouble("boundingCenterX", boundingBox.centerX());
-    // bounds.putDouble("boundingCenterY", boundingBox.centerY());
-    // bounds.putDouble("boundingExactCenterX", boundingBox.exactCenterX());
-    // bounds.putDouble("boundingExactCenterY", boundingBox.exactCenterY());
 
     return bounds;
   }

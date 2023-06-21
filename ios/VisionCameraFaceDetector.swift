@@ -10,10 +10,10 @@ import AVFoundation
 public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
     static var FaceDetectorOption: FaceDetectorOptions = {
         let option = FaceDetectorOptions()
-        option.contourMode = .none
+        option.contourMode = .all
         option.classificationMode = .none
         option.landmarkMode = .none
-        option.performanceMode = .accurate // doesn't work in fast mode!, why?
+        // option.performanceMode = .accurate // doesn't work in fast mode!, why?
         option.isTrackingEnabled = true
         return option
     }()
