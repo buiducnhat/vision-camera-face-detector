@@ -4,7 +4,48 @@ import type { Frame } from 'react-native-vision-camera';
  * Scans Faces.
  */
 
-type Point = { x: number; y: number };
+export type TPoint = { x: number; y: number };
+
+export interface FaceBounds {
+  top: number;
+  left: number;
+  height: number;
+  width: number;
+  boundingCenterX: number;
+  boundingCenterY: number;
+  boundingExactCenterX?: number;
+  boundingExactCenterY?: number;
+}
+
+export interface FaceContours {
+  FACE: TPoint[];
+  NOSE_BOTTOM: TPoint[];
+  LOWER_LIP_TOP: TPoint[];
+  RIGHT_EYEBROW_BOTTOM: TPoint[];
+  LOWER_LIP_BOTTOM: TPoint[];
+  NOSE_BRIDGE: TPoint[];
+  RIGHT_CHEEK: TPoint[];
+  RIGHT_EYEBROW_TOP: TPoint[];
+  LEFT_EYEBROW_TOP: TPoint[];
+  UPPER_LIP_BOTTOM: TPoint[];
+  LEFT_EYEBROW_BOTTOM: TPoint[];
+  UPPER_LIP_TOP: TPoint[];
+  LEFT_EYE: TPoint[];
+  RIGHT_EYE: TPoint[];
+  LEFT_CHEEK: TPoint[];
+}
+
+export interface FaceLandmarks {
+  MOUTH_BOTTOM: TPoint;
+  MOUTH_RIGHT: TPoint;
+  MOUTH_LEFT: TPoint;
+  LEFT_EYE: TPoint;
+  RIGHT_EYE: TPoint;
+  LEFT_CHEEK: TPoint;
+  RIGHT_CHEEK: TPoint;
+  NOSE_BASE: TPoint;
+}
+
 export interface Face {
   leftEyeOpenProbability: number;
   rollAngle: number;
@@ -12,43 +53,9 @@ export interface Face {
   yawAngle: number;
   rightEyeOpenProbability: number;
   smilingProbability: number;
-  bounds: {
-    top: number;
-    left: number;
-    height: number;
-    width: number;
-    boundingCenterX: number;
-    boundingCenterY: number;
-    boundingExactCenterX: number;
-    boundingExactCenterY: number;
-  };
-  contours: {
-    FACE: Point[];
-    NOSE_BOTTOM: Point[];
-    LOWER_LIP_TOP: Point[];
-    RIGHT_EYEBROW_BOTTOM: Point[];
-    LOWER_LIP_BOTTOM: Point[];
-    NOSE_BRIDGE: Point[];
-    RIGHT_CHEEK: Point[];
-    RIGHT_EYEBROW_TOP: Point[];
-    LEFT_EYEBROW_TOP: Point[];
-    UPPER_LIP_BOTTOM: Point[];
-    LEFT_EYEBROW_BOTTOM: Point[];
-    UPPER_LIP_TOP: Point[];
-    LEFT_EYE: Point[];
-    RIGHT_EYE: Point[];
-    LEFT_CHEEK: Point[];
-  };
-  landmarks: {
-    MOUTH_BOTTOM: Point;
-    MOUTH_RIGHT: Point;
-    MOUTH_LEFT: Point;
-    LEFT_EYE: Point;
-    RIGHT_EYE: Point;
-    LEFT_CHEEK: Point;
-    RIGHT_CHEEK: Point;
-    NOSE_BASE: Point;
-  };
+  bounds: FaceBounds;
+  contours: FaceContours;
+  landmarks: FaceLandmarks;
   trackingId?: number;
 }
 
