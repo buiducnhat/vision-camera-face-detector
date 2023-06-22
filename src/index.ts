@@ -40,14 +40,14 @@ export interface Face {
     LEFT_CHEEK: Point[];
   };
   landmarks: {
-    BOTTOM_MOUTH: Point;
-    RIGHT_EYE: Point;
+    MOUTH_BOTTOM: Point;
+    MOUTH_RIGHT: Point;
+    MOUTH_LEFT: Point;
     LEFT_EYE: Point;
-    NOSE_BASE: Point;
+    RIGHT_EYE: Point;
     LEFT_CHEEK: Point;
     RIGHT_CHEEK: Point;
-    LEFT_MOUTH: Point;
-    RIGHT_MOUTH: Point;
+    NOSE_BASE: Point;
   };
   trackingId?: number;
 }

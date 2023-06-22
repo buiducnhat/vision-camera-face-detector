@@ -123,9 +123,9 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
       new int[]{
         FaceLandmark.LEFT_EYE,
         FaceLandmark.RIGHT_EYE,
-        FaceLandmark.LEFT_MOUTH,
-        FaceLandmark.RIGHT_MOUTH,
-        FaceLandmark.BOTTOM_MOUTH,
+        FaceLandmark.MOUTH_LEFT,
+        FaceLandmark.MOUTH_RIGHT,
+        FaceLandmark.MOUTH_BOTTOM,
         FaceLandmark.NOSE_BASE,
         FaceLandmark.LEFT_CHEEK,
         FaceLandmark.RIGHT_CHEEK
@@ -134,9 +134,9 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
     String[] faceLandmarksTypesStrings = {
       "LEFT_EYE",
       "RIGHT_EYE",
-      "LEFT_MOUTH",
-      "RIGHT_MOUTH",
-      "BOTTOM_MOUTH",
+      "MOUTH_LEFT",
+      "MOUTH_RIGHT",
+      "MOUTH_BOTTOM",
       "NOSE_BASE",
       "LEFT_CHEEK",
       "RIGHT_CHEEK"
