@@ -1,7 +1,7 @@
 {
-  "name": "vision-camera-face-detector",
-  "version": "0.1.8",
-  "description": "VisionCamera Frame Processor Plugin to detect faces using MLKit Vision Face Detector",
+  "name": "@buiducnhat/vision-camera-face-detector",
+  "version": "0.2.0",
+  "description": "VisionCamera Frame Processor Plugin to detect faces using MLKit Vision Face Detector, forked from https://github.com/rodgomesc/vision-camera-face-detector",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -37,7 +37,7 @@
     "android"
   ],
   "repository": "https://github.com/buiducnhat/vision-camera-face-detector",
-  "author": "Rodrigo gomes <rodgomesc@gmail.com> (https://github.com/rodgomesc)",
+  "author": "Bùi Đức Nhật <nhaths4701@gmail.com> (https://github.com/buiducnhat)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/buiducnhat/vision-camera-face-detector/issues"
@@ -46,6 +46,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "cache": "~/.npm",
   "devDependencies": {
     "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/eslint-config": "^2.0.0",
