@@ -12,9 +12,9 @@ public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
         let option = FaceDetectorOptions()
         option.contourMode = .all
         option.classificationMode = .none
-        option.landmarkMode = .none
-        // option.performanceMode = .accurate // doesn't work in fast mode!, why?
-        option.isTrackingEnabled = true
+        option.landmarkMode = .all
+        option.performanceMode = .fast // doesn't work in fast mode!, why?
+        option.isTrackingEnabled = false
         return option
     }()
 
@@ -81,6 +81,53 @@ public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
       return faceContoursTypesMap
     }
 
+    private static func processLandmarks(from face: Face) -> [String:[[String:CGFloat]]] {
+      let faceLandmarksTypes = [
+        FaceLandmarkType.mouthBottom,
+        FaceLandmarkType.mouthRight,
+        FaceLandmarkType.mouthLeft,
+        FaceLandmarkType.leftEye,
+        FaceLandmarkType.rightEye,
+        FaceLandmarkType.leftCheek,
+        FaceLandmarkType.rightCheek,
+        FaceLandmarkType.noseBase,
+      ]
+
+      let faceLandmarksTypesStrings = [
+        "MOUTH_BOTTOM",
+        "MOUTH_RIGHT",
+        "MOUTH_LEFT",
+        "LEFT_EYE",
+        "RIGHT_EYE",
+        "LEFT_CHEEK",
+        "RIGHT_CHEEK",
+        "NOSE_BASE",
+      ];
+
+      var faceLandmarksTypesMap: [String:[[String:CGFloat]]] = [:]
+
+      for i in 0..<faceLandmarksTypes.count {
+        let landmark = face.landmark(ofType: faceLandmarksTypes[i]);
+
+        var pointsArray: [[String:CGFloat]] = []
+
+        if let points = landmark?.points {
+          for point in points {
+            let currentPointsMap = [
+                "x": point.x,
+                "y": point.y,
+            ]
+
+            pointsArray.append(currentPointsMap)
+          }
+
+          faceLandmarksTypesMap[faceLandmarksTypesStrings[i]] = pointsArray
+        }
+      }
+
+      return faceLandmarksTypesMap
+    }
+
     private static func processBoundingBox(from face: Face) -> [String:Any] {
         let frameRect = face.frame
 
@@ -115,6 +162,7 @@ public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
                     map["smilingProbability"] = face.smilingProbability
                     map["bounds"] = processBoundingBox(from: face)
                     map["contours"] = processContours(from: face)
+                    map["landmarks"] = processLandmarks(from: face)
                     if(face.hasTrackingID) {
                         map["trackingId"] = face.trackingID
                     }

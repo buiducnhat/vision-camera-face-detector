@@ -36,11 +36,12 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
 
   FaceDetectorOptions options =
     new FaceDetectorOptions.Builder()
-      .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
+      .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
+      .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
       .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
       .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_NONE)
-      .setMinFaceSize(0.15f)
-      .enableTracking()
+      // .setMinFaceSize(0.15f)
+      // .enableTracking()
       .build();
 
   FaceDetector faceDetector = FaceDetection.getClient(options);
@@ -116,6 +117,48 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
     return faceContoursTypesMap;
   }
 
+  private WriteableMap processFaceLandmarks(Face face) {
+    // All faceLandmarks
+    int[] faceLandmarksTypes =
+      new int[]{
+        FaceLandmark.LEFT_EYE,
+        FaceLandmark.RIGHT_EYE,
+        FaceLandmark.LEFT_MOUTH,
+        FaceLandmark.RIGHT_MOUTH,
+        FaceLandmark.BOTTOM_MOUTH,
+        FaceLandmark.NOSE_BASE,
+        FaceLandmark.LEFT_CHEEK,
+        FaceLandmark.RIGHT_CHEEK
+      };
+
+    String[] faceLandmarksTypesStrings = {
+      "LEFT_EYE",
+      "RIGHT_EYE",
+      "LEFT_MOUTH",
+      "RIGHT_MOUTH",
+      "BOTTOM_MOUTH",
+      "NOSE_BASE",
+      "LEFT_CHEEK",
+      "RIGHT_CHEEK"
+    };
+
+    WritableMap faceLandmarksTypesMap = new WritableNativeMap();
+
+    for (int i = 0; i < faceLandmarksTypesStrings.length; i++) {
+      FaceLandmark landmark = face.getLandmark(faceLandmarksTypes[i]);
+      if (landmark != null) {
+        WritableMap currentLandmarkMap = new WritableNativeMap();
+
+        currentLandmarkMap.putDouble("x", landmark.getPosition().x);
+        currentLandmarkMap.putDouble("y", landmark.getPosition().y);
+
+        faceLandmarksTypesMap.putMap(faceLandmarksTypesStrings[landmark.getFaceLandmarkType() - 1], currentLandmarkMap);
+      }
+    }
+
+    return faceLandmarksTypesMap;
+  }
+
   @SuppressLint("NewApi")
   @Override
   public Object callback(ImageProxy frame, Object[] params) {
@@ -141,9 +184,11 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
 
           WritableMap contours = processFaceContours(face);
           WritableMap bounds = processBoundingBox(face.getBoundingBox());
+          WritableMap landmarks = processFaceLandmarks(face);
 
           map.putMap("bounds", bounds);
           map.putMap("contours", contours);
+          map.putMap("landmarks", landmarks);
 
           if (face.getTrackingId() != null) {
             map.putInt("trackingId", face.getTrackingId());

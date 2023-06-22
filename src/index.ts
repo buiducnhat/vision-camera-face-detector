@@ -17,10 +17,10 @@ export interface Face {
     left: number;
     height: number;
     width: number;
-    // boundingCenterX: number;
-    // boundingCenterY: number;
-    // boundingExactCenterX: number;
-    // boundingExactCenterY: number;
+    boundingCenterX: number;
+    boundingCenterY: number;
+    boundingExactCenterX: number;
+    boundingExactCenterY: number;
   };
   contours: {
     FACE: Point[];
@@ -38,6 +38,16 @@ export interface Face {
     LEFT_EYE: Point[];
     RIGHT_EYE: Point[];
     LEFT_CHEEK: Point[];
+  };
+  landmarks: {
+    BOTTOM_MOUTH: Point;
+    RIGHT_EYE: Point;
+    LEFT_EYE: Point;
+    NOSE_BASE: Point;
+    LEFT_CHEEK: Point;
+    RIGHT_CHEEK: Point;
+    LEFT_MOUTH: Point;
+    RIGHT_MOUTH: Point;
   };
   trackingId?: number;
 }
