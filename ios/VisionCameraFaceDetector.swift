@@ -81,7 +81,7 @@ public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
       return faceContoursTypesMap
     }
 
-    private static func processLandmarks(from face: Face) -> [String:[[String:CGFloat]]] {
+    private static func processLandmarks(from face: Face) -> [String:[String:CGFloat]] {
       let faceLandmarksTypes = [
         FaceLandmarkType.mouthBottom,
         FaceLandmarkType.mouthRight,
@@ -104,24 +104,19 @@ public class VisionCameraFaceDetector: NSObject, FrameProcessorPluginBase {
         "NOSE_BASE",
       ];
 
-      var faceLandmarksTypesMap: [String:[[String:CGFloat]]] = [:]
+      var faceLandmarksTypesMap: [String:[String:CGFloat]] = [:]
 
       for i in 0..<faceLandmarksTypes.count {
         let landmark = face.landmark(ofType: faceLandmarksTypes[i]);
+        let position = landmark?.position // {x, y}
 
-        var pointsArray: [[String:CGFloat]] = []
+        if let position = position {
+          let currentPointsMap = [
+              "x": position.x,
+              "y": position.y,
+          ]
 
-        if let points = landmark?.points {
-          for point in points {
-            let currentPointsMap = [
-                "x": point.x,
-                "y": point.y,
-            ]
-
-            pointsArray.append(currentPointsMap)
-          }
-
-          faceLandmarksTypesMap[faceLandmarksTypesStrings[i]] = pointsArray
+          faceLandmarksTypesMap[faceLandmarksTypesStrings[i]] = currentPointsMap
         }
       }
 
