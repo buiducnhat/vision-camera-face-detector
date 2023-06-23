@@ -1,11 +1,11 @@
-# vision-camera-face-detector
+# @buiducnhat/vision-camera-face-detector
 
-VisionCamera Frame Processor Plugin to detect faces using MLKit Vision Face Detector
+VisionCamera Frame Processor Plugin to detect faces using MLKit Vision Face Detector forked from [bglgwyng/vision-camera-face-detector](https://github.com/bglgwyng/vision-camera-face-detector) - the orignal: [rodgomesc/vision-camera-face-detector](https://github.com/rodgomesc/vision-camera-face-detector)
 
 ## Installation
 
 ```sh
-yarn add vision-camera-face-detector
+yarn add @buiducnhat/vision-camera-face-detector
 ```
 
 ## Usage
