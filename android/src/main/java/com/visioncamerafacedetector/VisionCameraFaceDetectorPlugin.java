@@ -23,6 +23,7 @@ import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceContour;
 import com.google.mlkit.vision.face.FaceDetection;
 import com.google.mlkit.vision.face.FaceDetector;
+import com.google.mlkit.vision.face.FaceLandmark;
 
 
 import com.google.mlkit.vision.face.FaceDetectorOptions;
@@ -117,7 +118,7 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
     return faceContoursTypesMap;
   }
 
-  private WriteableMap processFaceLandmarks(Face face) {
+  private WritableMap processFaceLandmarks(Face face) {
     // All faceLandmarks
     int[] faceLandmarksTypes =
       new int[]{
@@ -152,7 +153,7 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
         currentLandmarkMap.putDouble("x", landmark.getPosition().x);
         currentLandmarkMap.putDouble("y", landmark.getPosition().y);
 
-        faceLandmarksTypesMap.putMap(faceLandmarksTypesStrings[landmark.getFaceLandmarkType() - 1], currentLandmarkMap);
+        faceLandmarksTypesMap.putMap(faceLandmarksTypesStrings[i], currentLandmarkMap);
       }
     }
 
