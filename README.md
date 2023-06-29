@@ -21,7 +21,7 @@ import {
 } from 'react-native-vision-camera';
 
 import { Camera } from 'react-native-vision-camera';
-import { scanFaces, Face } from 'vision-camera-face-detector';
+import { scanFaces, Face } from '@buiducnhat/vision-camera-face-detector';
 
 export default function App() {
   const [hasPermission, setHasPermission] = React.useState(false);
