@@ -7,8 +7,8 @@ import type { Frame } from 'react-native-vision-camera';
 export type TPoint = { x: number; y: number };
 
 export interface FaceBounds {
-  top: number;
-  left: number;
+  x: number;
+  y: number;
   height: number;
   width: number;
   boundingCenterX: number;

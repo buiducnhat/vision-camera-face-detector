@@ -41,7 +41,6 @@ public class VisionCameraFaceDetectorPlugin extends FrameProcessorPlugin {
       .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
       .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
       .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_NONE)
-      // .setMinFaceSize(0.15f)
       // .enableTracking()
       .build();
 

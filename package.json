@@ -1,6 +1,6 @@
 {
   "name": "@buiducnhat/vision-camera-face-detector",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "VisionCamera Frame Processor Plugin to detect faces using MLKit Vision Face Detector, forked from https://github.com/rodgomesc/vision-camera-face-detector",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
